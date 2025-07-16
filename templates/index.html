@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphRAG Q&A</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-project-diagram"></i>
+                <h1>GraphRAG Assistant</h1>
+            </div>
+            <p class="subtitle">Ask questions about your data using global or local search</p>
+        </header>
+
+        <div class="chat-container">
+            <div class="messages" id="messages">
+                <div class="message assistant">
+                    <div class="avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="content">
+                        <p>Hello! I'm your GraphRAG assistant. Ask me anything about your data, and I'll help you find the information you need.</p>
+                        <div class="search-info">
+                            <div class="info-item">
+                                <strong>Global Search:</strong> Best for broad questions and general overviews
+                            </div>
+                            <div class="info-item">
+                                <strong>Local Search:</strong> Best for specific, detailed questions about particular entities
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <div class="input-container">
+                    <input type="text" id="question" placeholder="Ask a question about your data..." maxlength="500">
+
+                    <div class="button-group">
+                        <select id="searchMethod" class="search-method-dropdown">
+                            <option value="global" selected>🌐 Global Search</option>
+                            <option value="local">🔍 Local Search</option>
+                        </select>
+
+                        <button class="search-btn send-btn" id="sendBtn" onclick="submitQuery()">
+                            <i class="fas fa-paper-plane"></i>
+                            Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Processing your query...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
